@@ -10,11 +10,31 @@
         flex-direction: column;
         justify-content: center;
       }
+
+      #sign-out {
+        display: none;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      #profile-image {
+        display: flex;
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <div id="sign-in" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <button id="sign-out" onclick="signOut()">Sign Out</button>
+    <div id="profile-image"></div>
     <script>
       let key
       function onSignIn(googleUser) {
@@ -25,18 +45,22 @@
         console.log('Given Name: ' + profile.getGivenName());
         console.log('Family Name: ' + profile.getFamilyName());
         console.log("Image URL: " + profile.getImageUrl());
+        document.getElementById("profile-image").innerHTML = `<img src='${profile.getImageUrl()}'></img>`
         console.log("Email: " + profile.getEmail());
 
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         key = id_token
         console.log("ID Token: " + id_token);
+        document.getElementById("sign-out").style.display = "flex"
+        document.getElementById("sign-in").style.display = "none"
       }
 
       function signOut(){
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
           console.log('User signed out.');
+          document.getElementById("sign-in").style.display = "flex"
         });
       }
     </script>
