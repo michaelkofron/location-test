@@ -36,6 +36,7 @@
     <div id="sign-in" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <button id="sign-out" onclick="signOut()">Sign Out</button>
     <div id="profile-image"></div>
+    <p id="email"></p>
     <script>
       let key
       function onSignIn(googleUser) {
@@ -48,6 +49,7 @@
         console.log("Image URL: " + profile.getImageUrl());
         document.getElementById("profile-image").innerHTML = `<img src='${profile.getImageUrl()}'></img>`
         console.log("Email: " + profile.getEmail());
+        document.getElementById("email").innerText = profile.getEmail()
 
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
