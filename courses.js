@@ -10,7 +10,7 @@ document.getElementById("setup-holes").addEventListener("click", function(){
     document.querySelectorAll(".hole-par").forEach((e) => e.remove())
     document.querySelectorAll(".hole-mens-handicap").forEach((e) => e.remove())
     document.querySelectorAll(".hole-womens-handicap").forEach((e) => e.remove())
-    document.querySelectorAll('.hole-tee-name').forEach((e) => e.remove())
+    document.querySelectorAll('.hole-tee').forEach((e) => e.remove())
 
     let parent = document.getElementById("create-course-box")
 
@@ -66,7 +66,7 @@ document.getElementById("setup-holes").addEventListener("click", function(){
 
             for (let i = 1; i <= value; i++){
                 let teeNameInput = document.createElement("input")
-                teeNameInput.setAttribute("class", "hole-tee-name")
+                teeNameInput.setAttribute("class", "hole-tee")
                 teeNameInput.setAttribute("placeholder", `#${i} name,rating,slope,distance`)
 
                 teeCountDiv.appendChild(teeNameInput)
