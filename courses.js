@@ -53,6 +53,8 @@ document.getElementById("setup-holes").addEventListener("click", function(){
 
         let teeCountDiv = document.createElement("div")
         teeCountDiv.setAttribute("class", "tee-count-div")
+        teeCountDiv.style.display = "flex"
+        teeCountDiv.style.flexDirection = "column"
         
         parent.appendChild(teeCountDiv)
 
