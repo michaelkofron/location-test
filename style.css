@@ -1,4 +1,4 @@
-div#create-course {
+div#create-course, div#setup-holes {
     display: flex;
     width: 200px;
     height: 45px;
@@ -8,7 +8,7 @@ div#create-course {
     align-items: center;
 }
 
-div#create-course > p {
+div#create-course > p, div#setup-holes > p {
     color: white
 }
 
