@@ -10,6 +10,7 @@ document.getElementById("setup-holes").addEventListener("click", function(){
     document.querySelectorAll(".hole-par").forEach((e) => e.remove())
     document.querySelectorAll(".hole-mens-handicap").forEach((e) => e.remove())
     document.querySelectorAll(".hole-womens-handicap").forEach((e) => e.remove())
+    document.querySelectorAll('.hole-tee-name').forEach((e) => e.remove())
 
     let parent = document.getElementById("create-course-box")
 
