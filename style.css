@@ -1,5 +1,5 @@
 div#create-course, div#setup-holes {
-    display: flex;
+    display: none;
     width: 200px;
     height: 45px;
     border-radius: 8px;

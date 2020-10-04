@@ -91,6 +91,7 @@
                 document.getElementById("sign-in").style.display = "none"
                 document.getElementById("profile-image").innerHTML = `<img src='${profile.getImageUrl()}'></img>`
                 document.getElementById("email").innerText = profile.getEmail()
+                document.getElementById("create-course").style.display = "flex"
             })
             .catch(function(error){
                 console.log(error)
