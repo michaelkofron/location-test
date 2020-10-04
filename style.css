@@ -7,6 +7,9 @@ div#create-course, div#setup-holes {
     justify-content: center;
     align-items: center;
 }
+div#setup-holes {
+    display: flex;
+}
 
 div#create-course > p, div#setup-holes > p {
     color: white
