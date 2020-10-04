@@ -5,6 +5,12 @@ document.getElementById("create-course").addEventListener("click", function(){
 document.getElementById("setup-holes").addEventListener("click", function(){
     let holeCount = parseInt(document.getElementById("course-hole-count").value)
 
+    document.querySelectorAll(".hole-number").forEach((e) => e.remove())
+    document.querySelectorAll(".hole-name").forEach((e) => e.remove())
+    document.querySelectorAll(".hole-par").forEach((e) => e.remove())
+    document.querySelectorAll(".hole-mens-handicap").forEach((e) => e.remove())
+    document.querySelectorAll(".hole-womens-handicap").forEach((e) => e.remove())
+
     let parent = document.getElementById("create-course-box")
 
     for (let i = 1; i <= holeCount; i++){
