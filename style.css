@@ -1,0 +1,17 @@
+div#create-course {
+    display: flex;
+    width: 200px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: lightseagreen;
+    justify-content: center;
+    align-items: center;
+}
+
+div#create-course > p {
+    color: white
+}
+
+div#create-course-box {
+    display: none
+}

@@ -4,6 +4,7 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="478001771313-08pjibi3pl834r34sl4d4rcv3kd6cufo.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="./style.css">
     <style>
       body {
         display: flex;
@@ -37,6 +38,13 @@
     <p id="message"></p>
     <div id="profile-image"></div>
     <p id="email"></p>
+    <div id="create-course">
+      <p>Add Course</p>
+    </div>
+    <div id="create-course-box">
+      <h1>Create Course</h1>
+      
+    </div>
     <script>
       let key
       function onSignIn(googleUser) {
@@ -100,4 +108,7 @@
       }
     </script>
   </body>
+  <footer>
+    <script src="./courses.js"></script>
+  </footer>
 </html>
