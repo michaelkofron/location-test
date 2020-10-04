@@ -45,5 +45,29 @@ document.getElementById("setup-holes").addEventListener("click", function(){
 
         parent.appendChild(womensHandicapInput)
 
+        let teeCountInput = document.createElement("input")
+        teeCountInput.setAttribute("class", "hole-tee-count")
+        teeCountInput.setAttribute("placeholder", "Tee count")
+
+        parent.appendChild(teeCountInput)
+
+        let teeCountDiv = document.createElement("div")
+        teeCountDiv.setAttribute("class", "tee-count-div")
+        
+        parent.appendChild(teeCountDiv)
+
+        teeCountInput.addEventListener("input", function(e){
+            let value = parseInt(e.target.value)
+
+            for (let i = 1; i <= value; i++){
+                let teeNameInput = document.createElement("input")
+                teeNameInput.setAttribute("class", "hole-tee-name")
+                teeNameInput.setAttribute("placeholder", `tee #${i} name`)
+
+                teeCountDiv.appendChild(teeNameInput)
+
+            }
+        })
+
     }
 })
