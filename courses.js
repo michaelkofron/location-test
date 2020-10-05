@@ -158,9 +158,7 @@ document.getElementById("submit-course").addEventListener("click", function(){
                 .then(function(object){
                     if (object.done){
                         holeId = object.hole_id
-                        if (tees.length >= 1){
-                            addTees(holeId)
-                        }
+                        addTees(holeId)
                     }
                 })
                 .catch(function(error){
