@@ -340,6 +340,7 @@ function startRound(course){
 
     newShot.addEventListener("click", function(){
         round.currentShot++
+        console.log("click")
         if (round.currentShot == 1){
             round.start = new Date()
         }
