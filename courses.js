@@ -128,8 +128,8 @@ document.getElementById("submit-course").addEventListener("click", function(){
                 womensHandicap: `${parseInt(holeWomensHandicaps[count].value)}`
             })
         }
-    })
 
-    console.log(createHoleObject)
+        console.log(createHoleObject)
+    })
 
 })
