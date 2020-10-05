@@ -250,11 +250,15 @@ function addCoursesToHome(){
         })
 }
 
-playCourse = {
+let playCourse = {
 
 }
 
-round = {
+let round = {
+
+}
+
+let currentShot = {
 
 }
 
@@ -322,7 +326,7 @@ function startRound(course){
 
     let newShot = document.createElement("div")
     newShot.setAttribute("id", "new-shot")
-    newShot.innerHTML = "<p>new shot</p>"
+    newShot.innerHTML = "<p>setup shot</p>"
     parent.appendChild(newShot)
 
     let finishHole = document.createElement("div")
@@ -330,4 +334,55 @@ function startRound(course){
     finishHole.innerHTML = "<p>finish hole</p>"
     parent.appendChild(finishHole)
 
+    newShot.addEventListener("click", function(){
+        if (round.currentShot == 0){
+            round.start = new Date()
+        }
+
+        round.currentShot++
+
+        newShot.firstElementChild.innerText = "finding coords..."
+
+        takeShot(function(){newShot.firstElementChild.innerText = "setup shot"})
+
+    })
+
+    finishHole.addEventListener("click", function(){
+        round.currentHole++
+
+        document.getElementsById("current-hole") = round.currentHole
+
+        if (round.currentHole = course.holes.length){
+            finishHole.innerHTML = "<p>Finish round</p>"
+
+        } else if (round.currentHole > course.holes.length){
+            //round is finished here submit all info
+            console.log("info submit")
+        }
+    })
+
+}
+
+
+
+
+function takeShot(callback){
+    let interval = setInterval(currentCoords, 1000)
+
+    function currentCoords(){
+        navigator.geolocation.getCurrentPosition(function(location) {
+    
+            if (location.coords.accuracy < 10){
+                currentShot.latitude = location.coords.latitude
+                currentShot.longitude = location.coords.longitude
+                clearInterval(interval)
+                callback()
+            } else {
+                console.log("not accurate enough")
+                console.log(location.coords.accuracy)
+            }
+            
+    
+        },function(error){alert(error)}, {enableHighAccuracy: true});
+    }
 }
