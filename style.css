@@ -35,7 +35,7 @@ div#courses {
 
 div#courses > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 250px;
     height: 45px;
     justify-content: center;
@@ -47,5 +47,4 @@ div#courses > div > div {
     height: 25px;
     width: 80px;
     background-color: lightseagreen;
-    color: white;
 }
