@@ -305,7 +305,6 @@ function addCourse(course){
             .then(function(object){
                 playCourse.name = object.course.name
                 playCourse.holes = object.holes
-                playCourse.id = object.id
 
                 startRound(playCourse)
                 console.log(playCourse)
