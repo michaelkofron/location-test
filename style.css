@@ -53,3 +53,7 @@ div#courses > div > div {
     border-radius: 5px;
     margin-left: 10px;
 }
+
+div:hover {
+    cursor: pointer;
+}
