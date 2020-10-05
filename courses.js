@@ -386,7 +386,7 @@ function takeShot(callback){
                 callback()
             } else {
                 console.log("not accurate enough")
-                infoArea.innerHTML = "<p>not accurate enough</p>"
+                infoArea.innerHTML = "<p>not accurate enough, trying again</p>"
                 console.log(location.coords.accuracy)
             }
             

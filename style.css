@@ -73,6 +73,9 @@ div#play {
 
 div#silent {
     display: flex;
-    height: 100px;
+    height: auto;
     width: 200px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
