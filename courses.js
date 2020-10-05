@@ -360,16 +360,17 @@ function startRound(course){
     })
 
     finishHole.addEventListener("click", function(){
-        round.currentHole++
 
         document.getElementById("current-hole").innerText = `Current hole: ${round.currentHole}`
 
-        if (round.currentHole = playCourse.holes.length){
+        if (round.currentHole == playCourse.holes.length){
             finishHole.innerHTML = "<p>Finish round</p>"
 
         } else if (finishHole.firstElementChild.innerText == "Finish round"){
             //round is finished here submit all info
             console.log("info submit")
+        } else {
+            round.currentHole++
         }
     })
 
