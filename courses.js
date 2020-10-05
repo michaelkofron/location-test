@@ -365,6 +365,7 @@ function startRound(course){
     finishHole.addEventListener("click", function(){
         if (round.currentHole < playCourse.holes.length){
             round.currentHole++
+            currentHoleId++
         }
 
         document.getElementById("current-hole").innerText = `Current Hole: ${round.currentHole}`
