@@ -372,9 +372,9 @@ function startRound(course){
         } else if (finishHole.innerText == "Finish round"){
             //round is finished here submit all info
             console.log("info submit")
-        } else {
-            
         }
+
+        console.log("click")
     })
 
 }
