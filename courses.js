@@ -329,6 +329,10 @@ function startRound(course){
     newShot.innerHTML = "<p>setup shot</p>"
     parent.appendChild(newShot)
 
+    let silentDiv = document.createElement("div")
+    silentDiv.setAttribute("id", "silent")
+    parent.appendChild(silentDiv)
+
     let finishHole = document.createElement("div")
     finishHole.setAttribute("id", "finish-hole")
     finishHole.innerHTML = "<p>finish hole</p>"
@@ -369,6 +373,8 @@ function startRound(course){
 function takeShot(callback){
     let interval = setInterval(currentCoords, 1000)
 
+    let infoArea = document.getElementById("silent")
+
     function currentCoords(){
         navigator.geolocation.getCurrentPosition(function(location) {
     
@@ -376,9 +382,11 @@ function takeShot(callback){
                 currentShot.latitude = location.coords.latitude
                 currentShot.longitude = location.coords.longitude
                 clearInterval(interval)
+                infoArea.innerHTML = `<p>Lat: ${currentShot.latitude}, Long: ${currentShot.longitude}`
                 callback()
             } else {
                 console.log("not accurate enough")
+                infoArea.innerHTML = "<p>not accurate enough</p>"
                 console.log(location.coords.accuracy)
             }
             
