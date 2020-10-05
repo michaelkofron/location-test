@@ -427,20 +427,14 @@ function takeShot(callback){
                                 return response.json()
                             })
                             .then(function(object){
-                                playCourse.name = object.course.name
-                                playCourse.holes = object.holes
-                
-                                round.id = object.round_id
-                
-                                startRound(playCourse)
-                                console.log(playCourse)
+                                if (object.done){
+                                    infoArea.innerHTML = ""
+                                }
                             })
                             .catch(function(error){
                                 console.log(error)
                                 alert("error")
                             })
-
-                        infoArea.innerHTML = ""
                     }
                 })
                 callback()
