@@ -83,5 +83,53 @@ document.getElementById("setup-holes").addEventListener("click", function(){
 })
 
 document.getElementById("submit-course").addEventListener("click", function(){
-    
+    let courseName = document.getElementById("course-name").value 
+    let subCourseName = document.getElementById("sub-course-name").value
+    let courseHoleCount = parseInt(document.getElementById("course-hole-count").value)
+    let holeNumbers = Array.from(document.getElementsByClassName("hole-number"))
+    let holeNames = Array.from(document.getElementsByClassName("hole-name"))
+    let holePars = Array.from(document.getElementsByClassName("hole-par"))
+    let holeMensHandicaps = Array.from(document.getElementsByClassName("hole-mens-handicap"))
+    let holeWomensHandicaps = Array.from(document.getElementsByClassName("hole-womens-handicap"))
+    let holeTeesCounts = Array.from(document.getElementsByClassName("hole-tee-count"))
+
+    let courseId
+
+    let createCourseObject = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            name: `${courseName}`,
+            subName: `${subCourseName}`,
+            holeCount: `${courseHoleCount}`
+        })
+    }
+
+    console.log(createCourseObject)
+
+    holeNumbers.forEach(function(number){
+        let count = parseInt(number.value) - 1
+
+        let createHoleObject = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                courseId: `${courseId}`,
+                number: `${parseInt(number.value)}`,
+                par: `${parseInt(holePars[count].value)}`,
+                holeName: `${holeNames[count].value}`,
+                mensHandicap: `${parseInt(holeMensHandicaps[count].value)}`,
+                womensHandicap: `${parseInt(holeWomensHandicaps[count].value)}`
+            })
+        }
+    })
+
+    console.log(createHoleObject)
+
 })
