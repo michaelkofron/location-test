@@ -64,7 +64,7 @@ document.getElementById("setup-holes").addEventListener("click", function(){
         teeCountInput.addEventListener("input", function(e){
             let value = parseInt(e.target.value)
 
-            document.querySelectorAll('.hole-tee').forEach((e) => e.remove())
+            document.querySelectorAll(`.hole-tee ${value}`).forEach((e) => e.remove())
 
             for (let b = 1; b <= value; b++){
                 let teeNameInput = document.createElement("input")
