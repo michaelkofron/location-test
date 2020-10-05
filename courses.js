@@ -65,7 +65,7 @@ document.getElementById("setup-holes").addEventListener("click", function(){
             let value = parseInt(e.target.value)
 
             if (document.getElementsByClassName(`hole-tee ${i}`).length > 0){
-                document.querySelectorAll(`.hole-tee ${i}`).forEach((e) => e.remove())
+                Array.from(document.getElementsByClassName(`hole-tee ${1}`)).forEach((e) => e.remove())
             }
 
             for (let b = 1; b <= value; b++){
