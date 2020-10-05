@@ -364,10 +364,10 @@ function startRound(course){
 
         document.getElementById("current-hole").innerText = `Current hole: ${round.currentHole}`
 
-        if (round.currentHole = course.holes.length){
+        if (round.currentHole = playCourse.holes.length){
             finishHole.innerHTML = "<p>Finish round</p>"
 
-        } else if (round.currentHole > course.holes.length){
+        } else if (round.currentHole > playCourse.holes.length){
             //round is finished here submit all info
             console.log("info submit")
         }
