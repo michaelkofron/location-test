@@ -131,7 +131,7 @@ document.getElementById("submit-course").addEventListener("click", function(){
         holeNumbers.forEach(function(number){
             let count = parseInt(number.value) - 1
 
-            let tees = Array.from(document.getElementsByClassName(`hole-tees ${number.value}`))
+            let tees = Array.from(document.getElementsByClassName(`hole-tee ${number.value}`))
     
             let createHoleObject = {
                 method: "POST",
