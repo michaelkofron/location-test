@@ -383,6 +383,11 @@ function takeShot(callback){
                 currentShot.longitude = location.coords.longitude
                 clearInterval(interval)
                 infoArea.innerHTML = `<p>Lat: ${currentShot.latitude}, Long: ${currentShot.longitude}</p><input id='club' type='text' placeholder='club selection'><button id='submit-shot'>submit shot</button>`
+                document.getElementById('submit-shot').addEventListener("click", function(){
+                    currentShot.clubSelection = document.getElementById("club-selection").value
+
+                    infoArea.innerHTML = ""
+                })
                 callback()
             } else {
                 console.log("not accurate enough")
