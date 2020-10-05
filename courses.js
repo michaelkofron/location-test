@@ -384,6 +384,7 @@ function takeShot(callback){
                 clearInterval(interval)
                 infoArea.innerHTML = `<p>Lat: ${currentShot.latitude}, Long: ${currentShot.longitude}</p><input id='club' type='text' placeholder='club selection'><button id='submit-shot'>submit shot</button>`
                 document.getElementById('submit-shot').addEventListener("click", function(){
+                    document.getElementById("silent").style.backgroundColor = "red"
                     currentShot.clubSelection = document.getElementById("club-selection").value
 
                     infoArea.innerHTML = ""
