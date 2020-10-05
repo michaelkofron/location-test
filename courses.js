@@ -262,6 +262,10 @@ let currentShot = {
 
 }
 
+let holeScore = {
+
+}
+
 function addCourse(course){
     let parent = document.getElementById("courses")
 
@@ -301,6 +305,7 @@ function addCourse(course){
             .then(function(object){
                 playCourse.name = object.course.name
                 playCourse.holes = object.holes
+                playCourse.id = object.id
 
                 startRound(playCourse)
                 console.log(playCourse)
@@ -340,7 +345,6 @@ function startRound(course){
 
     newShot.addEventListener("click", function(){
         round.currentShot++
-        console.log("click")
         if (round.currentShot == 1){
             round.start = new Date()
         }
@@ -388,7 +392,9 @@ function takeShot(callback){
                 infoArea.innerHTML = `<p>Lat: ${currentShot.latitude}, Long: ${currentShot.longitude}</p><input id='club' type='text' placeholder='club selection'><button id='submit-shot'>submit shot</button>`
                 document.getElementById('submit-shot').addEventListener("click", function(){
                     currentShot.clubSelection = document.getElementById("club").value
-                    infoArea.innerHTML = ""
+                    if (currentShot.clubSelection != ""){
+                        infoArea.innerHTML = ""
+                    }
                 })
                 callback()
             } else {
