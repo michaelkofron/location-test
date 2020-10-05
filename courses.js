@@ -108,28 +108,116 @@ document.getElementById("submit-course").addEventListener("click", function(){
         })
     }
 
+    fetch("https://golfingapi.herokuapp.com/createcourse", createCourseObject)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(object){
+            if (object.done){
+                courseId = object.course_id
+                addHoles(courseId)
+            }
+        })
+        .catch(function(error){
+            console.log(error)
+            alert("error")
+        })
+
     console.log(createCourseObject)
 
-    holeNumbers.forEach(function(number){
-        let count = parseInt(number.value) - 1
+    function addHoles(id){
+        holeNumbers.forEach(function(number){
+            let count = parseInt(number.value) - 1
 
-        let createHoleObject = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                courseId: `${courseId}`,
-                number: `${parseInt(number.value)}`,
-                par: `${parseInt(holePars[count].value)}`,
-                holeName: `${holeNames[count].value}`,
-                mensHandicap: `${parseInt(holeMensHandicaps[count].value)}`,
-                womensHandicap: `${parseInt(holeWomensHandicaps[count].value)}`
-            })
-        }
+            let tees = Array.from(document.getElementsByClassName(`hole-tees ${number.value}`))
+    
+            let createHoleObject = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    courseId: `${id}`,
+                    number: `${parseInt(number.value)}`,
+                    par: `${parseInt(holePars[count].value)}`,
+                    holeName: `${holeNames[count].value}`,
+                    mensHandicap: `${parseInt(holeMensHandicaps[count].value)}`,
+                    womensHandicap: `${parseInt(holeWomensHandicaps[count].value)}`
+                })
+            }
 
-        console.log(createHoleObject)
-    })
+            let holeId
+
+            fetch("https://golfingapi.herokuapp.com/createhole", createHoleObject)
+                .then(function(response){
+                    return response.json()
+                })
+                .then(function(object){
+                    if (object.done){
+                        holeId = object.hole_id
+                        if (tees.length >= 1){
+                            addTees(holeId)
+                        }
+                    }
+                })
+                .catch(function(error){
+                    console.log(error)
+                    alert("error")
+                })
+
+            function addTees(holeId){
+                tees.forEach(function(tee){
+                    let valueArray = tee.value.split(",")
+                    //let teeName = valueArray[0]
+                    //let teeRating = parseFloat(valueArray[1])
+                    //let teeSlope = parseInt(valueArray[2])
+                    //let teeDistance = parseInt(valueArray[3])
+
+                    let tee = {
+                        name: valueArray[0],
+                        rating: parseFloat(valueArray[1]),
+                        slope: parseInt(valueArray[2]),
+                        distance: parseInt(valueArray[3])
+                    }
+
+                    let createTeeObject = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            name: `${tee.name}`,
+                            holeId: `${holeId}`,
+                            rating: `${tee.rating}`,
+                            slope: `${tee.slope}`,
+                            distance: `${tee.distance}`
+                        })
+                    }
+
+                    fetch("https://golfingapi.herokuapp.com/createtee", createTeeObject)
+                        .then(function(response){
+                            return response.json()
+                        })
+                        .then(function(object){
+                            if (object.done){
+                                document.getElementById("submit-course").firstElementChild.innerText = "Success!"
+                            }
+                        })
+                        .catch(function(error){
+                            console.log(error)
+                            alert("error")
+                        })
+
+
+                })
+            }
+    
+            console.log(createHoleObject)
+        })
+    }
+
+    
 
 })
