@@ -1,4 +1,4 @@
-div#create-course, div#setup-holes {
+div#create-course, div#setup-holes, div#submit-course {
     display: none;
     width: 200px;
     height: 45px;
@@ -11,8 +11,12 @@ div#setup-holes {
     display: flex;
 }
 
-div#create-course > p, div#setup-holes > p {
+div#create-course > p, div#setup-holes > p, div#submit-course > p {
     color: white
+}
+
+div#submit-course {
+    display: none;
 }
 
 div#create-course-box {

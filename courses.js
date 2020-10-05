@@ -66,10 +66,11 @@ document.getElementById("setup-holes").addEventListener("click", function(){
 
             document.querySelectorAll('.hole-tee').forEach((e) => e.remove())
 
-            for (let i = 1; i <= value; i++){
+            for (let b = 1; b <= value; b++){
                 let teeNameInput = document.createElement("input")
                 teeNameInput.setAttribute("class", "hole-tee")
-                teeNameInput.setAttribute("placeholder", `#${i} name,rating,slope,distance`)
+                teeNameInput.setAttribute("id", `${i}`)
+                teeNameInput.setAttribute("placeholder", `#${b} name,rating,slope,distance`)
 
                 teeCountDiv.appendChild(teeNameInput)
 
@@ -77,4 +78,10 @@ document.getElementById("setup-holes").addEventListener("click", function(){
         })
 
     }
+
+    document.getElementById("submit-course").style.display = "flex"
+})
+
+document.getElementById("submit-course").addEventListener("click", function(){
+    
 })
