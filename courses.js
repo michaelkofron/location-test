@@ -294,7 +294,8 @@ function addCourse(course){
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                id: `${playCourse.id}`
+                id: `${playCourse.id}`,
+                key: `${key}`
             })
         }
 
@@ -305,6 +306,8 @@ function addCourse(course){
             .then(function(object){
                 playCourse.name = object.course.name
                 playCourse.holes = object.holes
+
+                round.id = object.round_id
 
                 startRound(playCourse)
                 console.log(playCourse)
@@ -359,7 +362,7 @@ function startRound(course){
     finishHole.addEventListener("click", function(){
         round.currentHole++
 
-        document.getElementsById("current-hole") = round.currentHole
+        document.getElementsById("current-hole").innerText = round.currentHole
 
         if (round.currentHole = course.holes.length){
             finishHole.innerHTML = "<p>Finish round</p>"
