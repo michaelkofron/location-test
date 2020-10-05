@@ -381,7 +381,6 @@ function takeShot(callback){
             if (location.coords.accuracy < 10000){
                 currentShot.latitude = location.coords.latitude
                 currentShot.longitude = location.coords.longitude
-                round.currentShot++
                 document.getElementById("current-shot").innerText = `Current shot: ${round.currentShot}`
                 clearInterval(interval)
                 infoArea.innerHTML = `<p>Lat: ${currentShot.latitude}, Long: ${currentShot.longitude}</p><input id='club' type='text' placeholder='club selection'><button id='submit-shot'>submit shot</button>`
