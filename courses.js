@@ -198,6 +198,8 @@ document.getElementById("submit-course").addEventListener("click", function(){
                         })
                     }
 
+                    console.log(createTeeObject)
+
                     fetch("https://golfingapi.herokuapp.com/createtee", createTeeObject)
                         .then(function(response){
                             return response.json()
