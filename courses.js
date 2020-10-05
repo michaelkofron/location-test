@@ -367,7 +367,7 @@ function startRound(course){
         if (round.currentHole = playCourse.holes.length){
             finishHole.innerHTML = "<p>Finish round</p>"
 
-        } else if (round.currentHole > playCourse.holes.length){
+        } else if (finishHole.firstElementChild.innerText == "Finish round"){
             //round is finished here submit all info
             console.log("info submit")
         }
