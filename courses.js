@@ -362,7 +362,7 @@ function startRound(course){
     finishHole.addEventListener("click", function(){
         round.currentHole++
 
-        document.getElementsById("current-hole").innerText = round.currentHole
+        document.getElementById("current-hole").innerText = round.currentHole
 
         if (round.currentHole = course.holes.length){
             finishHole.innerHTML = "<p>Finish round</p>"
@@ -395,6 +395,7 @@ function takeShot(callback){
                 document.getElementById('submit-shot').addEventListener("click", function(){
                     currentShot.clubSelection = document.getElementById("club").value
                     if (currentShot.clubSelection != ""){
+                        //submit shot to db here
                         infoArea.innerHTML = ""
                     }
                 })
