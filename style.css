@@ -42,10 +42,18 @@ div#courses > div {
     align-items: center;
 }
 
+div#courses > div > p {
+    justify-self: flex-start;
+}
+
 div#courses > div > div {
     display: flex;
     height: 25px;
     width: 80px;
     background-color: lightseagreen;
     color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    justify-self: flex-end;
 }
