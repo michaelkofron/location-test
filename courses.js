@@ -235,7 +235,7 @@ function addCoursesToHome(){
             "Accept": "application/json"
         }
     }
-    fetch("https://golfingapi.herokuapp.com/createtee", configurationObject)
+    fetch("https://golfingapi.herokuapp.com/getcourses", configurationObject)
         .then(function(response){
             return response.json()
         })
