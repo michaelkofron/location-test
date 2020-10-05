@@ -368,7 +368,7 @@ function startRound(course){
 }
 
 
-
+let dotCount = '.'
 
 function takeShot(callback){
     let interval = setInterval(currentCoords, 1000)
@@ -386,7 +386,8 @@ function takeShot(callback){
                 callback()
             } else {
                 console.log("not accurate enough")
-                infoArea.innerHTML = "<p>not accurate enough, trying again</p>"
+                infoArea.innerHTML = `<p>not accurate enough, trying again${dotCount}</p>`
+                dotCount += "."
                 console.log(location.coords.accuracy)
             }
             
