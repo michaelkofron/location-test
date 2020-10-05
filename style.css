@@ -1,4 +1,4 @@
-div#create-course, div#setup-holes, div#submit-course {
+div#create-course, div#setup-holes, div#submit-course, div#finish-hole, div#new-shot {
     display: none;
     width: 200px;
     height: 45px;
@@ -6,13 +6,10 @@ div#create-course, div#setup-holes, div#submit-course {
     background-color: lightseagreen;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 div#setup-holes {
     display: flex;
-}
-
-div#create-course > p, div#setup-holes > p, div#submit-course > p {
-    color: white
 }
 
 div#submit-course {
@@ -52,4 +49,11 @@ div#courses > div > div {
     align-items: center;
     border-radius: 5px;
     margin-left: 10px;
+}
+
+div#play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

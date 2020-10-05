@@ -254,6 +254,10 @@ playCourse = {
 
 }
 
+round = {
+
+}
+
 function addCourse(course){
     let parent = document.getElementById("courses")
 
@@ -294,6 +298,7 @@ function addCourse(course){
                 playCourse.name = object.course.name
                 playCourse.holes = object.holes
 
+                startRound(playCourse)
                 console.log(playCourse)
             })
             .catch(function(error){
@@ -304,4 +309,23 @@ function addCourse(course){
         
 
     })
+}
+
+function startRound(course){
+    let parent = document.getElementById("play")
+
+    parent.innerHTML = `<p id='course-title'>Title: ${course.name}</p><p id='holes'>Holes: ${course.holes.length}</p><p id='current-hole'>Current Hole: 1</p>`
+
+    round.currentHole = 1
+
+    let newShot = document.createElement("div")
+    newShot.setAttribute("id", "new-shot")
+    newShot.innerHTML = "<p>new shot</p>"
+    parent.appendChild(newShot)
+
+    let finishHole = document.createElement("div")
+    finishHole.setAttribute("id", "finish-hole")
+    finishHole.innerHTML = "<p>finish hole</p>"
+    parent.appendChild(finishHole)
+
 }
