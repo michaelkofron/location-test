@@ -254,9 +254,7 @@ let playCourse = {
 
 }
 
-let currentHoleIndex = 0
-
-let rawCurrentHole = playCourse.holes[currentHoleIndex]
+let currentHoleId
 
 let round = {
 
@@ -332,6 +330,7 @@ function startRound(course){
     parent.innerHTML = `<p id='course-title'>Title: ${course.name}</p><p id='holes'>Holes: ${course.holes.length}</p><p id='current-hole'>Current Hole: 1</p><p id='current-shot'>Current Shot: 0</p>`
 
     round.currentHole = 1
+    currentHoleId = playCourse.holes[0].id
     round.currentShot = 0
     round.userKey = key
 
@@ -366,7 +365,7 @@ function startRound(course){
     finishHole.addEventListener("click", function(){
         if (round.currentHole < playCourse.holes.length){
             round.currentHole++
-            currentHoleIndex++
+            currentHoleId++
         }
 
         document.getElementById("current-hole").innerText = `Current Hole: ${round.currentHole}`
