@@ -225,3 +225,45 @@ document.getElementById("submit-course").addEventListener("click", function(){
     
 
 })
+
+function addCoursesToHome(){
+
+    let configurationObject = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }
+    fetch("https://golfingapi.herokuapp.com/createtee", configurationObject)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(object){
+            object.forEach(function(course){
+                addCourse(course)
+            })
+        })
+        .catch(function(error){
+            console.log(error)
+            alert("error")
+        })
+}
+
+function addCourse(course){
+    let parent = document.getElementById("courses")
+
+    let courseDiv = document.createElement("div")
+    parent.appendChild(courseDiv)
+
+    let p = document.createElement("p")
+    p.innerText = course.name
+
+    parent.appendChild(p)
+
+    let playDiv = document.createElement("div")
+    playDiv.innerHTML = "<p>Play</p>"
+
+    parent.appendChild(playDiv)
+
+}

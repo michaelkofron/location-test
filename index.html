@@ -51,6 +51,9 @@
     <div id="submit-course">
       <p>Submit</p>
     </div>
+    <div id="courses">
+
+    </div>
     <script>
       let key
       function onSignIn(googleUser) {
@@ -95,6 +98,7 @@
                 document.getElementById("profile-image").innerHTML = `<img src='${profile.getImageUrl()}'></img>`
                 document.getElementById("email").innerText = profile.getEmail()
                 document.getElementById("create-course").style.display = "flex"
+                addCoursesToHome()
             })
             .catch(function(error){
                 console.log(error)
@@ -112,6 +116,7 @@
           document.getElementById("email").innerText = ""
           document.getElementById("message").innerText = ""
           document.getElementById("create-course").style.display = "none"
+          document.getElementById("courses").remove()
         });
       }
     </script>
