@@ -174,7 +174,7 @@ document.getElementById("submit-course").addEventListener("click", function(){
                     //let teeSlope = parseInt(valueArray[2])
                     //let teeDistance = parseInt(valueArray[3])
 
-                    let tee = {
+                    let sendTee = {
                         name: valueArray[0],
                         rating: parseFloat(valueArray[1]),
                         slope: parseInt(valueArray[2]),
@@ -188,11 +188,11 @@ document.getElementById("submit-course").addEventListener("click", function(){
                             "Accept": "application/json"
                         },
                         body: JSON.stringify({
-                            name: `${tee.name}`,
+                            name: `${sendTee.name}`,
                             holeId: `${holeId}`,
-                            rating: `${tee.rating}`,
-                            slope: `${tee.slope}`,
-                            distance: `${tee.distance}`
+                            rating: `${sendTee.rating}`,
+                            slope: `${sendTee.slope}`,
+                            distance: `${sendTee.distance}`
                         })
                     }
 
