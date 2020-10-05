@@ -18,6 +18,7 @@ div#finish-hole, div#new-shot {
     justify-content: center;
     align-items: center;
     color: white;
+    margin-bottom: 15px;
 }
 
 div#setup-holes {

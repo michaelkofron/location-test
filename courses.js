@@ -314,7 +314,7 @@ function addCourse(course){
 function startRound(course){
     let parent = document.getElementById("play")
 
-    parent.innerHTML = `<p id='course-title'>Title: ${course.name}</p><p id='holes'>Holes: ${course.holes.length}</p><p id='current-hole'>Current Hole: 1</p>`
+    parent.innerHTML = `<p id='course-title'>Title: ${course.name}</p><p id='holes'>Holes: ${course.holes.length}</p><p id='current-hole'>Current Hole: 1</p><p id='current-shot'>Current Shot: 0</p>`
 
     round.currentHole = 1
 
