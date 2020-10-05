@@ -362,7 +362,7 @@ function startRound(course){
     finishHole.addEventListener("click", function(){
         round.currentHole++
 
-        document.getElementById("current-hole").innerText = round.currentHole
+        document.getElementById("current-hole").innerText = `Current hole: ${round.currentHole}`
 
         if (round.currentHole = course.holes.length){
             finishHole.innerHTML = "<p>Finish round</p>"
