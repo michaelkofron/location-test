@@ -378,7 +378,7 @@ function takeShot(callback){
     function currentCoords(){
         navigator.geolocation.getCurrentPosition(function(location) {
     
-            if (location.coords.accuracy < 10){
+            if (location.coords.accuracy < 5000){
                 currentShot.latitude = location.coords.latitude
                 currentShot.longitude = location.coords.longitude
                 clearInterval(interval)
