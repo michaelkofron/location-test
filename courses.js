@@ -68,8 +68,8 @@ document.getElementById("setup-holes").addEventListener("click", function(){
 
             for (let b = 1; b <= value; b++){
                 let teeNameInput = document.createElement("input")
-                teeNameInput.setAttribute("class", "hole-tee")
-                teeNameInput.setAttribute("id", `${i}`)
+                teeNameInput.setAttribute("class", `hole-tee ${i}`)
+                //teeNameInput.setAttribute("id", `${i}`)
                 teeNameInput.setAttribute("placeholder", `#${b} name,rating,slope,distance`)
 
                 teeCountDiv.appendChild(teeNameInput)
