@@ -360,6 +360,9 @@ function startRound(course){
     })
 
     finishHole.addEventListener("click", function(){
+        if (round.currentHole < playCourse.holes.length){
+            round.currentHole++
+        }
 
         document.getElementById("current-hole").innerText = `Current Hole: ${round.currentHole}`
 
@@ -370,7 +373,7 @@ function startRound(course){
             //round is finished here submit all info
             console.log("info submit")
         } else {
-            round.currentHole++
+            
         }
     })
 
