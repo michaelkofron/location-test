@@ -339,11 +339,12 @@ function startRound(course){
     parent.appendChild(finishHole)
 
     newShot.addEventListener("click", function(){
-        if (round.currentShot == 0){
+        round.currentShot++
+        if (round.currentShot == 1){
             round.start = new Date()
         }
 
-        round.currentShot++
+
 
         newShot.firstElementChild.innerText = "finding coords..."
 
