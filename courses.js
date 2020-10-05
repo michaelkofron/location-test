@@ -404,6 +404,42 @@ function takeShot(callback){
                     currentShot.clubSelection = document.getElementById("club").value
                     if (currentShot.clubSelection != ""){
                         //submit shot to db here
+
+                        let submitShot = {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: JSON.stringify({
+                                key: `${key}`,
+                                holeId: `${currentHoleId}`,
+                                roundId: `${round.id}`,
+                                shotNumber: `${round.currentShot}`,
+                                clubSelection: `${currentShot.clubSelection}`,
+                                latitude: `${currentShot.latitude}`,
+                                longitude: `${currentShot.longitude}`
+                            })
+                        }
+                
+                        fetch("https://golfingapi.herokuapp.com/createshot", submitShot)
+                            .then(function(response){
+                                return response.json()
+                            })
+                            .then(function(object){
+                                playCourse.name = object.course.name
+                                playCourse.holes = object.holes
+                
+                                round.id = object.round_id
+                
+                                startRound(playCourse)
+                                console.log(playCourse)
+                            })
+                            .catch(function(error){
+                                console.log(error)
+                                alert("error")
+                            })
+
                         infoArea.innerHTML = ""
                     }
                 })
