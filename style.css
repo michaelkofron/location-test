@@ -70,3 +70,9 @@ div#play {
     align-items: center;
     flex-direction: column;
 }
+
+div#silent {
+    display: flex;
+    height: 100px;
+    width: 200px;
+}
