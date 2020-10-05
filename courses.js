@@ -250,6 +250,10 @@ function addCoursesToHome(){
         })
 }
 
+playCourse = {
+
+}
+
 function addCourse(course){
     let parent = document.getElementById("courses")
 
@@ -267,4 +271,37 @@ function addCourse(course){
 
     courseDiv.appendChild(playDiv)
 
+    playDiv.addEventListener("click", function(){
+        let courseId = playDiv.getAttribute("id")
+        playCourse.id = parseInt(courseId)
+
+        let getSpecificObject = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                id: `${playCourse.id}`
+            })
+        }
+
+        fetch("https://golfingapi.herokuapp.com/getspecific", getSpecificObject)
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(object){
+                playCourse.name = object.course.name
+                playCourse.holes = object.holes
+
+                console.log(playCourse)
+            })
+            .catch(function(error){
+                console.log(error)
+                alert("error")
+            })
+
+        
+
+    })
 }
