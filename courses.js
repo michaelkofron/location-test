@@ -259,12 +259,12 @@ function addCourse(course){
     let p = document.createElement("p")
     p.innerText = course.name
 
-    parent.appendChild(p)
+    courseDiv.appendChild(p)
 
     let playDiv = document.createElement("div")
     playDiv.innerHTML = "<p>Play</p>"
     playDiv.setAttribute("id", course.id)
 
-    parent.appendChild(playDiv)
+    courseDiv.appendChild(playDiv)
 
 }
