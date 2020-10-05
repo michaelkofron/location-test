@@ -203,6 +203,7 @@ document.getElementById("submit-course").addEventListener("click", function(){
                         .then(function(object){
                             if (object.done){
                                 document.getElementById("submit-course").firstElementChild.innerText = "Success!"
+                                window.location.reload()
                             }
                         })
                         .catch(function(error){
