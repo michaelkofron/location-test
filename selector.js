@@ -46,3 +46,27 @@ fetch("https://golfingapi.herokuapp.com/getcourses", configurationObject)
         alert("error")
     })
 
+courses.addEventListener("input", function(e){
+    let value = e.target.value
+    let tees = document.getElementById("tee-dropdown")
+    
+    let configurationObject = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }
+    fetch(`https://golfingapi.herokuapp.com/getspecific/${value}`, configurationObject)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(object){
+            console.log(object)
+        })
+        .catch(function(error){
+            console.log(error)
+            alert("error")
+        })
+
+})
