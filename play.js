@@ -108,6 +108,8 @@ shoot.addEventListener("click", function(){
                     let lat = location.coords.latitude
                     let long = location.coords.longitude
                     clearInterval(interval)
+
+                    console.log("logged")
     
                     let submitShot = {
                         method: "POST",
