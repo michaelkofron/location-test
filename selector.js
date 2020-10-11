@@ -16,7 +16,7 @@ for (let i = 1; i < 50; i++){
 
 //courses dropdown pulls from database to populate itself
 
-let courses = document.getElementById("courses-dropdown")
+let courses = document.getElementById("course-dropdown")
 
 let coursesDefault = document.createElement("option")
 coursesDefault.text = "Select Your Course"
