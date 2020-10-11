@@ -91,6 +91,8 @@ fetch(`https://golfingapi.herokuapp.com/getinfo/${courseId}/${hole}/${teeName}`,
 
 //shoot button stuff
 
+let ceiling = 0
+
 let shoot = document.getElementById("shoot")
 shoot.addEventListener("click", function(){
     //set interval to check coords
@@ -101,8 +103,9 @@ shoot.addEventListener("click", function(){
         function currentCoords(){
             navigator.geolocation.getCurrentPosition(function(location) {
         
-                if (location.coords.accuracy < 10){
+                if (location.coords.accuracy < 10000 && ceiling == 0){
                     //clear the interval on success
+                    ceiling++
                     let lat = location.coords.latitude
                     let long = location.coords.longitude
                     clearInterval(interval)
@@ -137,6 +140,7 @@ shoot.addEventListener("click", function(){
                                 shot.innerText = `Shot ${shotCount}`
                                 strokes.value = parseInt(strokes.value) + 1
                                 shoot.innerText = "Log Shot"
+                                ceiling = 0
                             }
                         })
                         .catch(function(error){
