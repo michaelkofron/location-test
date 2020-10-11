@@ -119,4 +119,4 @@ fetch(`https://golfingapi.herokuapp.com/getinfo/${courseId}/${hole}/${teeName}`,
             }
             
     
-        },function(error){alert(error)}, {enableHighAccuracy: true});
+        },function(error){alert(error)}, {enableHighAccuracy: true})}
