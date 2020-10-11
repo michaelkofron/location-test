@@ -96,9 +96,35 @@ document.getElementById("start").addEventListener("click", function(){
     let teeName = document.getElementById("tee-dropdown").value
     let pinLocation = document.getElementById("pin-location-dropdown").value
     let a = document.getElementById("start-a")
-    a.setAttribute("href", `./play.html?course=${courseId}&hole=1&tee=${teeName}&pinlocation=${pinLocation}`)
+
+    let roundConfigure = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            key: `${key}`,
+            courseId: `${courseId}`
+        })
+    }
+
+    fetch("https://golfingapi.herokuapp.com/createround", roundConfigure)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(object){
+            if (object.done){
+                a.setAttribute("href", `./play.html?course=${courseId}&hole=1&tee=${teeName}&pinlocation=${pinLocation}&round=${object.round_id}`)
+                a.click()
+            }
+        })
+        .catch(function(error){
+            console.log(error)
+            alert("error")
+        })
 
 
-    a.click()
+
 
 })

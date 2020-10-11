@@ -3,21 +3,54 @@ let courseId = values[0].split("=")[1]
 let hole = values[1].split("=")[1]
 let teeName = values[2].split("=")[1]
 let pinLocation = values[3].split("=")[1]
+let roundId = values[4].split("=")[1]
 
 let course = document.getElementById("course-name")
 let title = document.getElementById("title")
 let info = document.getElementById("info")
+let shot = document.getElementById("shot")
+let strokes = document.getElementById("strokes")
 
 let par
 
-let shot = 1
+let shotCount = 1
 
 let finish = document.getElementById("finish")
 let visFinish = document.getElementById("visible-finish")
 
 visFinish.addEventListener("click", function(){
+    //this is where we will submit hole_scores
 
-    finish.click()
+    let score = strokes.value - par 
+
+    let submitHoleScore = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            key: `${key}`,
+            score: `${score}`,
+            holeId: `${holeId}`,
+            pinLocation: `${pinLocation}`
+        })
+    }
+
+    fetch("https://golfingapi.herokuapp.com/createholescore", submitHoleScore)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(object){
+            if (object.done){
+                //submit after successful entry
+                finish.click()
+            }
+        })
+        .catch(function(error){
+            console.log(error)
+            alert("error")
+        })
 })
 
 let configurationObject = {
@@ -53,70 +86,71 @@ fetch(`https://golfingapi.herokuapp.com/getinfo/${courseId}/${hole}/${teeName}`,
     })
 
 
+//shoot button stuff
 
-
-
-
-
-
-
-
-
-    let interval = setInterval(currentCoords, 1000)
-
-
-    function currentCoords(){
-        navigator.geolocation.getCurrentPosition(function(location) {
+let shoot = document.getElementById("shoot")
+shoot.addEventListener("click", function(){
+    //set interval to check coords
+    let club = document.getElementById("club").value
+    if (club != ""){
+        shoot.innerText = "please wait..."
+        let interval = setInterval(currentCoords, 1000)
+        function currentCoords(){
+            navigator.geolocation.getCurrentPosition(function(location) {
+        
+                if (location.coords.accuracy < 10000){
+                    //clear the interval on success
+                    let lat = location.coords.latitude
+                    let long = location.coords.longitude
+                    clearInterval(interval)
     
-            if (location.coords.accuracy < 10000){
-                let latitude = location.coords.latitude
-                let longitude = location.coords.longitude
-                clearInterval(interval)
-                infoArea.innerHTML = `<p>Lat: ${currentShot.latitude}, Long: ${currentShot.longitude}</p><input id='club' type='text' placeholder='club selection'><button id='submit-shot'>submit shot</button>`
-                document.getElementById('submit-shot').addEventListener("click", function(){
-                    currentShot.clubSelection = document.getElementById("club").value
-                    if (currentShot.clubSelection != ""){
-                        //submit shot to db here
-
-                        let submitShot = {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Accept": "application/json"
-                            },
-                            body: JSON.stringify({
-                                key: `${key}`,
-                                holeId: `${currentHoleId}`,
-                                roundId: `${round.id}`,
-                                shotNumber: `${round.currentShot}`,
-                                clubSelection: `${currentShot.clubSelection}`,
-                                latitude: `${currentShot.latitude}`,
-                                longitude: `${currentShot.longitude}`
-                            })
-                        }
-                
-                        fetch("https://golfingapi.herokuapp.com/createshot", submitShot)
-                            .then(function(response){
-                                return response.json()
-                            })
-                            .then(function(object){
-                                if (object.done){
-                                    infoArea.innerHTML = ""
-                                }
-                            })
-                            .catch(function(error){
-                                console.log(error)
-                                alert("error")
-                            })
+                    let submitShot = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            key: `${key}`,
+                            holeId: `${hole}`,
+                            roundId: `${roundId}`,
+                            shotNumber: `${shotCount}`,
+                            clubSelection: `${club}`,
+                            latitude: `${lat}`,
+                            longitude: `${long}`
+                        })
                     }
-                })
-                callback()
-            } else {
-                console.log("not accurate enough")
-                infoArea.innerHTML = `<p>not accurate enough, trying again${dotCount}</p>`
-                dotCount += "."
-                console.log(location.coords.accuracy)
-            }
             
+                    fetch("https://golfingapi.herokuapp.com/createshot", submitShot)
+                        .then(function(response){
+                            return response.json()
+                        })
+                        .then(function(object){
+                            if (object.done){
+                                //change necessary values after successful shot
+                                shotCount++
+                                shot.innerText = `Shot ${shotCount}`
+                                strokes.value = parseInt(strokes.value) + 1
+                                shoot.innerText = "Log Shot"
+                            }
+                        })
+                        .catch(function(error){
+                            console.log(error)
+                            alert("error")
+                        })
+
+                }
+                
+        
+            },function(error){alert(error)}, {enableHighAccuracy: true})}
+    } 
     
-        },function(error){alert(error)}, {enableHighAccuracy: true})}
+})
+
+
+
+
+
+
+
+    
