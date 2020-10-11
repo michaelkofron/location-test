@@ -1,0 +1,82 @@
+div#create-course, div#setup-holes, div#submit-course {
+    display: none;
+    width: 200px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: lightseagreen;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+div#finish-hole, div#new-shot {
+    display: flex;
+    width: 200px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: lightseagreen;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-bottom: 15px;
+}
+
+div#setup-holes {
+    display: flex;
+}
+
+div#submit-course {
+    display: none;
+}
+
+div#create-course-box {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+div#courses {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div#courses > div {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+}
+
+div#courses > div > div {
+    display: flex;
+    height: 25px;
+    width: 80px;
+    background-color: lightseagreen;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+div#play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+div#silent {
+    display: flex;
+    height: auto;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 15px;
+}

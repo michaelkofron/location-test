@@ -4,30 +4,13 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="478001771313-08pjibi3pl834r34sl4d4rcv3kd6cufo.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./course_style.css">
     <style>
       body {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-      }
-
-      div#content {
-          display: flex;
-          height: 80%;
-          width: 100%;
-          flex-direction: column;
-          justify-content: center;
-      }
-
-      div#bottom {
-          display: flex;
-          height: 20%;
-          width: 100%;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
       }
 
       #sign-out {
@@ -41,30 +24,40 @@
 
       #profile-image {
         display: flex;
-        height: 50px;
-        width: 50px;
+        height: 100px;
+        width: 100px;
         justify-content: center;
         align-items: center;
         overflow: hidden;
       }
-
-      #test {
-          
-      }
     </style>
   </head>
   <body>
-    <div id="content">
+    <div id="sign-in" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <button id="sign-out" onclick="signOut()">Sign Out</button>
+    <p id="message"></p>
+    <div id="profile-image"></div>
+    <p id="email"></p>
+    <div id="create-course">
+      <p>Add Course</p>
+    </div>
+    <div id="create-course-box">
+      <input id="course-name" type="text" placeholder="Course name">
+      <input id="sub-course-name" type="text" placeholder="Course sub-name">
+      <input id="course-hole-count" type="text" placeholder="Hole count">
+      <div id="setup-holes"><p>setup holes +</p></div>
 
     </div>
-    <div id="bottom">
-        <div id="sign-in" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-        <button id="sign-out" onclick="signOut()">Sign Out</button>
-        <p id="message"></p>
-        <div id="profile-image"></div>
-        <p id="email"></p>
+    <div id="submit-course">
+      <p>Submit</p>
     </div>
-    
+    <div id="courses">
+
+    </div>
+    <div id="play">
+      
+    </div>
+    <script src="./courses.js"></script>
     <script>
       let key
       function onSignIn(googleUser) {
@@ -108,6 +101,8 @@
                 document.getElementById("sign-in").style.display = "none"
                 document.getElementById("profile-image").innerHTML = `<img src='${profile.getImageUrl()}'></img>`
                 document.getElementById("email").innerText = profile.getEmail()
+                document.getElementById("create-course").style.display = "flex"
+                addCoursesToHome()
             })
             .catch(function(error){
                 console.log(error)
@@ -124,6 +119,8 @@
           document.getElementById("profile-image").innerHTML = ""
           document.getElementById("email").innerText = ""
           document.getElementById("message").innerText = ""
+          document.getElementById("create-course").style.display = "none"
+          document.getElementById("courses").remove()
         });
       }
     </script>
