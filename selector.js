@@ -90,3 +90,15 @@ courses.addEventListener("input", function(e){
     
 
 })
+
+document.getElementById("start").addEventListener("click", function(){
+    let courseId = document.getElementById("course-dropdown").value
+    let teeName = document.getElementById("tee-dropdown").value
+    let pinLocation = document.getElementById("pin-location-dropdown").value
+    let a = document.getElementById("start-a")
+    a.setAttribute("href", `./play.html?course=${courseId}&tee=${teeName}&pinlocation=${pinLocation}`)
+
+
+    a.click()
+
+})
