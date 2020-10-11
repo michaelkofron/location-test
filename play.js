@@ -33,7 +33,7 @@ visFinish.addEventListener("click", function(){
             "Accept": "application/json"
         },
         body: JSON.stringify({
-            key: `${key}`,
+            key: `${window.localStorage.getItem("key")}`,
             score: `${score}`,
             holeId: `${hole}`,
             pinLocation: `${pinLocation}`
@@ -149,7 +149,7 @@ shoot.addEventListener("click", function(){
                             "Accept": "application/json"
                         },
                         body: JSON.stringify({
-                            key: `${key}`,
+                            key: `${window.localStorage.getItem("key")}`,
                             holeId: `${hole}`,
                             roundId: `${roundId}`,
                             shotNumber: `${shotCount}`,
