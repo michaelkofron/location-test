@@ -104,7 +104,7 @@ document.getElementById("start").addEventListener("click", function(){
             "Accept": "application/json"
         },
         body: JSON.stringify({
-            key: `${key}`,
+            key: `${window.localStorage.getItem("key")}`,
             courseId: `${courseId}`
         })
     }
