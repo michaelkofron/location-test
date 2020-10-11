@@ -10,7 +10,7 @@ div#bottom {
     display: flex;
     height: 20%;
     width: 100%;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
