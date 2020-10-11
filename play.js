@@ -80,7 +80,7 @@ fetch(`https://golfingapi.herokuapp.com/getinfo/${courseId}/${hole}/${teeName}`,
         } else {
             visFinish.innerText = "Finish Hole"
             finish.innerText = "Finish Hole"
-            finish.setAttribute("href", `./play.html?course=${courseId}&hole=${parseInt(hole) + 1}&tee=${teeName}&pinlocation=${pinLocation}`)
+            finish.setAttribute("href", `./play.html?course=${courseId}&hole=${parseInt(hole) + 1}&tee=${teeName}&pinlocation=${pinLocation}&round=${roundId}`)
         }
     })
     .catch(function(error){
