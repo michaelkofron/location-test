@@ -139,6 +139,7 @@
           document.getElementById("sign-out").style.display = "none"
           document.getElementById("profile-image").innerHTML = ""
           document.getElementById("email").innerText = ""
+          window.localStorage.removeItem("key")
         });
       }
     </script>
