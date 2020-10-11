@@ -27,7 +27,7 @@ fetch(`https://golfingapi.herokuapp.com/getinfo/${courseId}/${hole}/${teeName}`,
         title.innerText = `Hole #${object.hole.number}`
         info.innerText = `Par ${object.hole.par} | ${object.tee.distance} yds`
         if (object.last){
-            finish.innerText = "Finish Round"
+            finish.innerText = "Finish Your Round"
             finish.setAttribute("href", "./round.html")
         } else {
             finish.innerText = "Finish Hole"
