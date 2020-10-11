@@ -1,3 +1,5 @@
+//add pin locations selector first with default set as text
+
 let pinLocations = document.getElementById("pin-location-dropdown")
 let pinDefault = document.createElement("option")
 pinDefault.text = "Select Pin Location"
@@ -11,6 +13,8 @@ for (let i = 1; i < 50; i++){
 
     pinLocations.add(option)
 }
+
+//courses dropdown pulls from database to populate itself
 
 let courses = document.getElementById("courses-dropdown")
 
