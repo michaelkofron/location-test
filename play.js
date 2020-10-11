@@ -35,7 +35,7 @@ visFinish.addEventListener("click", function(){
         body: JSON.stringify({
             key: `${key}`,
             score: `${score}`,
-            holeId: `${holeId}`,
+            holeId: `${hole}`,
             pinLocation: `${pinLocation}`
         })
     }
