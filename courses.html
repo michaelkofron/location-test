@@ -1,0 +1,108 @@
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="478001771313-08pjibi3pl834r34sl4d4rcv3kd6cufo.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #sign-out {
+        display: none;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      #profile-image {
+        display: flex;
+        height: 100px;
+        width: 100px;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sign-in" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <button id="sign-out" onclick="signOut()">Sign Out</button>
+    <p id="message"></p>
+    <div id="profile-image"></div>
+    <p id="email"></p>
+    
+    <script>
+      let key
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        let email = profile.getEmail()
+        let name = profile.getName()
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        key = id_token
+        console.log("ID Token: " + id_token);
+
+        let configurationObject = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: `${name}`,
+                email: `${email}`,
+                key: `${key}`
+            })
+        }
+
+        fetch("https://golfingapi.herokuapp.com/signin", configurationObject)
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(object){
+                document.getElementById("message").innerText = object.message
+                document.getElementById("sign-out").style.display = "flex"
+                document.getElementById("sign-in").style.display = "none"
+                document.getElementById("profile-image").innerHTML = `<img src='${profile.getImageUrl()}'></img>`
+                document.getElementById("email").innerText = profile.getEmail()
+            })
+            .catch(function(error){
+                console.log(error)
+                alert("error")
+            })
+      }
+
+      function signOut(){
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+          document.getElementById("sign-in").style.display = "flex"
+          document.getElementById("sign-out").style.display = "none"
+          document.getElementById("profile-image").innerHTML = ""
+          document.getElementById("email").innerText = ""
+          document.getElementById("message").innerText = ""
+        });
+      }
+    </script>
+  </body>
+  <footer>
+    
+  </footer>
+</html>
