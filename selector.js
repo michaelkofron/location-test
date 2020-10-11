@@ -49,6 +49,10 @@ fetch("https://golfingapi.herokuapp.com/getcourses", configurationObject)
 courses.addEventListener("input", function(e){
     let value = e.target.value
     let tees = document.getElementById("tee-dropdown")
+    tees.length = 0
+    let teesDefault = document.createElement("option")
+    teesDefault.text = "Select Tees"
+    tees.add(teesDefault)
     
     let configurationObject = {
         method: "GET",
@@ -62,7 +66,18 @@ courses.addEventListener("input", function(e){
             return response.json()
         })
         .then(function(object){
-            console.log(object)
+            let array = []
+            object.tees.forEach(function(tee){
+                array.push(tee.name)
+
+                //we just want to know the name of the tees they will select
+                if (!array.includes(tee.name)){
+                    let option = document.createElement("option")
+                    option.text = tee.name
+                    option.value = tee.name
+                    tees.add(option)
+                }
+            })
         })
         .catch(function(error){
             console.log(error)
