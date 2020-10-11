@@ -46,9 +46,13 @@ fetch("https://golfingapi.herokuapp.com/getcourses", configurationObject)
         alert("error")
     })
 
+let tees = document.getElementById("tee-dropdown")
+let teesDefault = document.createElement("option")
+teesDefault.text = "Select Tees"
+tees.add(teesDefault)
+
 courses.addEventListener("input", function(e){
     let value = e.target.value
-    let tees = document.getElementById("tee-dropdown")
     tees.length = 0
     let teesDefault = document.createElement("option")
     teesDefault.text = "Select Tees"
