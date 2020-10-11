@@ -18,6 +18,10 @@ for (let i = 1; i < 50; i++){
 
 let courses = document.getElementById("courses-dropdown")
 
+let coursesDefault = document.createElement("option")
+coursesDefault.text = "Select Your Course"
+courses.add(coursesDefault)
+
 let configurationObject = {
     method: "GET",
     headers: {
@@ -31,7 +35,10 @@ fetch("https://golfingapi.herokuapp.com/getcourses", configurationObject)
     })
     .then(function(object){
         object.forEach(function(course){
-            console.log(object[0].name)
+            let option = document.createElement("option")
+            option.text = course.name
+            option.value = course.id
+            courses.add(option)
         })
     })
     .catch(function(error){
