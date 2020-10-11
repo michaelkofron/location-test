@@ -18,3 +18,24 @@ for (let i = 1; i < 50; i++){
 
 let courses = document.getElementById("courses-dropdown")
 
+let configurationObject = {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+}
+fetch("https://golfingapi.herokuapp.com/getcourses", configurationObject)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(object){
+        object.forEach(function(course){
+            console.log(object)
+        })
+    })
+    .catch(function(error){
+        console.log(error)
+        alert("error")
+    })
+
