@@ -68,15 +68,12 @@ courses.addEventListener("input", function(e){
         .then(function(object){
             let array = []
             object.tees.forEach(function(tee){
-                array.push(tee.name)
-
-                //we just want to know the name of the tees they will select
-                if (!array.includes(tee.name)){
+                
                     let option = document.createElement("option")
                     option.text = tee.name
                     option.value = tee.name
                     tees.add(option)
-                }
+                
             })
         })
         .catch(function(error){
