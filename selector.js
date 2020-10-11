@@ -53,7 +53,7 @@ tees.add(teesDefault)
 
 courses.addEventListener("input", function(e){
     let value = e.target.value
-    if (value != "Select Tees"){
+    if (value != "Select Your Course"){
         tees.length = 0
         let teesDefault = document.createElement("option")
         teesDefault.text = "Select Tees"
