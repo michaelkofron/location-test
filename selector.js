@@ -53,37 +53,40 @@ tees.add(teesDefault)
 
 courses.addEventListener("input", function(e){
     let value = e.target.value
-    tees.length = 0
-    let teesDefault = document.createElement("option")
-    teesDefault.text = "Select Tees"
-    tees.add(teesDefault)
-    
-    let configurationObject = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+    if (value != "Select Tees"){
+        tees.length = 0
+        let teesDefault = document.createElement("option")
+        teesDefault.text = "Select Tees"
+        tees.add(teesDefault)
+        
+        let configurationObject = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
         }
-    }
-    fetch(`https://golfingapi.herokuapp.com/getspecific/${value}`, configurationObject)
-        .then(function(response){
-            return response.json()
-        })
-        .then(function(object){
-            let array = []
-            object.tees.forEach(function(tee){
-                if (!array.includes(tee.name)){
-                    let option = document.createElement("option")
-                    option.text = tee.name
-                    option.value = tee.name
-                    tees.add(option)
-                    array.push(tee.name)
-                }
+        fetch(`https://golfingapi.herokuapp.com/getspecific/${value}`, configurationObject)
+            .then(function(response){
+                return response.json()
             })
-        })
-        .catch(function(error){
-            console.log(error)
-            alert("error")
-        })
+            .then(function(object){
+                let array = []
+                object.tees.forEach(function(tee){
+                    if (!array.includes(tee.name)){
+                        let option = document.createElement("option")
+                        option.text = tee.name
+                        option.value = tee.name
+                        tees.add(option)
+                        array.push(tee.name)
+                    }
+                })
+            })
+            .catch(function(error){
+                console.log(error)
+                alert("error")
+            })
+    }
+    
 
 })
