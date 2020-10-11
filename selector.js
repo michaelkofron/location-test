@@ -31,7 +31,7 @@ fetch("https://golfingapi.herokuapp.com/getcourses", configurationObject)
     })
     .then(function(object){
         object.forEach(function(course){
-            console.log(object)
+            console.log(object[0].name)
         })
     })
     .catch(function(error){
