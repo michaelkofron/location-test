@@ -1,3 +1,5 @@
+let start = new Date().toUTCString()
+
 let values = window.location.href.split("?")[1].split("&")
 let courseId = values[0].split("=")[1]
 let hole = values[1].split("=")[1]
@@ -21,6 +23,7 @@ let visFinish = document.getElementById("visible-finish")
 visFinish.addEventListener("click", function(){
     //this is where we will submit hole_scores
 
+    let end = new Date().toUTCString()
     let score = strokes.value - par 
 
     let submitHoleScore = {
@@ -33,7 +36,9 @@ visFinish.addEventListener("click", function(){
             key: `${key}`,
             score: `${score}`,
             holeId: `${holeId}`,
-            pinLocation: `${pinLocation}`
+            pinLocation: `${pinLocation}`,
+            start: `${start}`,
+            end: `${end}`
         })
     }
 
