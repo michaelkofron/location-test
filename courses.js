@@ -254,6 +254,8 @@ let playCourse = {
 
 }
 
+let currentHoleId
+
 let round = {
 
 }
@@ -328,6 +330,7 @@ function startRound(course){
     parent.innerHTML = `<p id='course-title'>Title: ${course.name}</p><p id='holes'>Holes: ${course.holes.length}</p><p id='current-hole'>Current Hole: 1</p><p id='current-shot'>Current Shot: 0</p>`
 
     round.currentHole = 1
+    currentHoleId = playCourse.holes[0].id
     round.currentShot = 0
     round.userKey = key
 
@@ -360,17 +363,22 @@ function startRound(course){
     })
 
     finishHole.addEventListener("click", function(){
-        round.currentHole++
+        if (round.currentHole < playCourse.holes.length){
+            round.currentHole++
+            currentHoleId++
+        }
 
-        document.getElementById("current-hole").innerText = `Current hole: ${round.currentHole}`
+        document.getElementById("current-hole").innerText = `Current Hole: ${round.currentHole}`
 
-        if (round.currentHole = playCourse.holes.length){
+        if (round.currentHole == playCourse.holes.length){
             finishHole.innerHTML = "<p>Finish round</p>"
 
-        } else if (finishHole.firstElementChild.innerText == "Finish round"){
+        } else if (finishHole.innerText == "Finish round"){
             //round is finished here submit all info
             console.log("info submit")
         }
+
+        console.log("click")
     })
 
 }
@@ -396,7 +404,37 @@ function takeShot(callback){
                     currentShot.clubSelection = document.getElementById("club").value
                     if (currentShot.clubSelection != ""){
                         //submit shot to db here
-                        infoArea.innerHTML = ""
+
+                        let submitShot = {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: JSON.stringify({
+                                key: `${key}`,
+                                holeId: `${currentHoleId}`,
+                                roundId: `${round.id}`,
+                                shotNumber: `${round.currentShot}`,
+                                clubSelection: `${currentShot.clubSelection}`,
+                                latitude: `${currentShot.latitude}`,
+                                longitude: `${currentShot.longitude}`
+                            })
+                        }
+                
+                        fetch("https://golfingapi.herokuapp.com/createshot", submitShot)
+                            .then(function(response){
+                                return response.json()
+                            })
+                            .then(function(object){
+                                if (object.done){
+                                    infoArea.innerHTML = ""
+                                }
+                            })
+                            .catch(function(error){
+                                console.log(error)
+                                alert("error")
+                            })
                     }
                 })
                 callback()
