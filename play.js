@@ -8,6 +8,8 @@ let course = document.getElementById("course-name")
 let title = document.getElementById("title")
 let info = document.getElementById("info")
 
+let finish = document.getElementById("finish")
+
 let configurationObject = {
     method: "GET",
     headers: {
@@ -23,6 +25,13 @@ fetch(`https://golfingapi.herokuapp.com/getinfo/${courseId}/${hole}/${teeName}`,
         course.innerText = object.course.name
         title.innerText = `Hole #${object.hole.number}`
         info.innerText = `Par ${object.hole.par} | ${object.tee.distance} yds`
+        if (object.last){
+            finish.innerText = "Finish Round"
+            finish.setAttribute("href", "./round.html")
+        } else {
+            finish.innerText = "Finish Hole"
+            finish.setAttribute("href", `./play.html?course=${courseId}&hole=${parseInt(hole) + 1}&tee=${teeName}&pinlocation=${pinLocation}`)
+        }
     })
     .catch(function(error){
         console.log(error)

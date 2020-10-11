@@ -58,6 +58,10 @@
       #profile-image {
           margin-right: 10px;
       }
+
+      button {
+          margin: 10px;
+      }
     </style>
   </head>
   <body>
@@ -65,9 +69,10 @@
         <h2 id="course-name">Course Name</h2>
         <h2 id="title">Hole</h2>
         <h3 id="info"></h3>
+        <h4 id="shot">Shot 1</h4>
         <input id="club" type="text" placeholder="club selection">
         <button id="shoot">Log Shot</button>
-        <a id="next-a" href=""></a>
+        <a id="finish" href="" onclick="confirm()">Finish Hole</a>
     </div>
     <div id="bottom">
         <div id="profile">
@@ -78,7 +83,11 @@
         <div id="sign-in" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
         <button id="sign-out" onclick="signOut()">Sign Out</button>
     </div>
-    
+    <script>
+        function confirm() {
+            confirm("Are you sure?");
+        }
+    </script>
     <script>
       let key
       function onSignIn(googleUser) {
