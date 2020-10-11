@@ -1,1 +1,145 @@
-<h1>hello</h1>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="478001771313-08pjibi3pl834r34sl4d4rcv3kd6cufo.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      div#content {
+          display: flex;
+          height: 80%;
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      div#bottom {
+          display: flex;
+          height: 20%;
+          width: 100%;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+      }
+
+      #sign-out {
+        display: none;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      #profile-image {
+        display: flex;
+        height: 50px;
+        width: 50px;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      #profile {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+      }
+
+      #profile-image {
+          margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+        <h2 id="title">Hole</h2>
+        <h3 id="info"></h3>
+        <input id="club" type="text" placeholder="club selection">
+        <button id="shoot">Log Shot</button>
+        <a id="next-a" href=""></a>
+    </div>
+    <div id="bottom">
+        <div id="profile">
+            <div id="profile-image"></div>
+            <p id="email"></p>
+        </div>
+        <div id="signout"></div>
+        <div id="sign-in" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <button id="sign-out" onclick="signOut()">Sign Out</button>
+    </div>
+    
+    <script>
+      let key
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        let email = profile.getEmail()
+        let name = profile.getName()
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        key = id_token
+        console.log("ID Token: " + id_token);
+
+        let configurationObject = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: `${name}`,
+                email: `${email}`,
+                key: `${key}`
+            })
+        }
+
+        fetch("https://golfingapi.herokuapp.com/signin", configurationObject)
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(object){
+                document.getElementById("sign-out").style.display = "flex"
+                document.getElementById("sign-in").style.display = "none"
+                document.getElementById("profile-image").innerHTML = `<img src='${profile.getImageUrl()}'></img>`
+                document.getElementById("email").innerText = profile.getEmail()
+            })
+            .catch(function(error){
+                console.log(error)
+                alert("error")
+            })
+      }
+
+      function signOut(){
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+          document.getElementById("sign-in").style.display = "flex"
+          document.getElementById("sign-out").style.display = "none"
+          document.getElementById("profile-image").innerHTML = ""
+          document.getElementById("email").innerText = ""
+        });
+      }
+    </script>
+  </body>
+  <footer>
+    <script src="./play.js"></script>
+  </footer>
+</html>
