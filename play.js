@@ -22,7 +22,7 @@ fetch(`https://golfingapi.herokuapp.com/getinfo/${courseId}/${hole}/${teeName}`,
         return response.json()
     })
     .then(function(object){
-        console.log(object)
+        console.log(object) 
         course.innerText = object.course.name
         title.innerText = `Hole #${object.hole.number}`
         info.innerText = `Par ${object.hole.par} | ${object.tee.distance} yds`
