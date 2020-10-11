@@ -96,7 +96,7 @@ document.getElementById("start").addEventListener("click", function(){
     let teeName = document.getElementById("tee-dropdown").value
     let pinLocation = document.getElementById("pin-location-dropdown").value
     let a = document.getElementById("start-a")
-    a.setAttribute("href", `./play.html?course=${courseId}&tee=${teeName}&pinlocation=${pinLocation}`)
+    a.setAttribute("href", `./play.html?course=${courseId}&hole=1&tee=${teeName}&pinlocation=${pinLocation}`)
 
 
     a.click()
