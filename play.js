@@ -47,7 +47,9 @@ visFinish.addEventListener("click", function(){
         .then(function(object){
             if (object.done){
                 //submit after successful entry
-                finish.click()
+                if (visFinish.innerText = "Submit Your Round"){
+                    updateRoundEnd()
+                }
             }
         })
         .catch(function(error){
@@ -55,6 +57,34 @@ visFinish.addEventListener("click", function(){
             alert("error")
         })
 })
+
+function updateRoundEnd(){
+    let roundUpdate = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            roundId: `${roundId}`
+        })
+    }
+
+    fetch("https://golfingapi.herokuapp.com/updateround", roundUpdate)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(object){
+            if (object.done){
+                //submit after successful entry
+                finish.click()
+            }
+        })
+        .catch(function(error){
+            console.log(error)
+            alert("error")
+        })
+}
 
 let configurationObject = {
     method: "GET",
