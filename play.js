@@ -36,6 +36,7 @@ visFinish.addEventListener("click", function(){
             key: `${window.localStorage.getItem("key")}`,
             score: `${score}`,
             holeId: `${hole}`,
+            roundId: `${roundId}`,
             pinLocation: `${pinLocation}`
         })
     }
@@ -49,6 +50,8 @@ visFinish.addEventListener("click", function(){
                 //submit after successful entry
                 if (visFinish.innerText = "Submit Your Round"){
                     updateRoundEnd()
+                } else {
+                    finish.click()
                 }
             }
         })
