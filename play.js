@@ -48,7 +48,7 @@ visFinish.addEventListener("click", function(){
         .then(function(object){
             if (object.done){
                 //submit after successful entry
-                if (visFinish.innerText = "Submit Your Round"){
+                if (visFinish.innerText = "Finish Your Round"){
                     updateRoundEnd()
                 } else {
                     finish.click()
