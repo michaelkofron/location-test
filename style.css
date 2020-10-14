@@ -19,3 +19,8 @@ div#bottom {
 select {
     margin: 5px;
 }
+
+button {
+    height: 20px;
+    width: 55px;
+}
