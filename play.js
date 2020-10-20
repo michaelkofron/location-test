@@ -136,7 +136,7 @@ shoot.addEventListener("click", function(){
         function currentCoords(){
             navigator.geolocation.getCurrentPosition(function(location) {
         
-                if (location.coords.accuracy < 10000 && ceiling == 0){
+                if (location.coords.accuracy < 10 && ceiling == 0){
                     //clear the interval on success
                     ceiling++
                     let lat = location.coords.latitude
